@@ -1,0 +1,53 @@
+/*Two Sum*/
+/*https://leetcode.com/problems/two-sum/*/
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        for( int x =0;x<n-1;x++){
+            for( int y = x+1;y<n;y++){
+                if( nums[x]+nums[y]==target){
+                    return new int [] {x,y};
+                }
+            }
+
+        }
+        return new int[]{-1,-1};
+    }
+}
+
+
+/*Remove Duplicates From Sorted Array*/
+/*https://leetcode.com/problems/remove-duplicates-from-sorted-array/ */
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length==0)
+        return 0;
+        int i =1;
+        for(int j=1 ;j<nums.length;j++){
+            if(nums [j]!= nums[i-1]){
+                nums[i]=nums[j];
+                i++;
+            }
+        }
+        return i;
+    }
+}
+
+
+/*Best Time To Buy And Sell Stock */
+/*https://leetcode.com/problems/best-time-to-buy-and-sell-stock/ */
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy_price = prices[0]; 
+        int profit = 0;
+        for( int i = 0; i<prices.length;i++){
+            if(prices[i]<buy_price){
+                buy_price = prices[i];
+            }
+            else if( prices[i]- buy_price>profit){
+                profit = prices[i]- buy_price;
+            }
+        }
+        return profit;
+    }
+}
