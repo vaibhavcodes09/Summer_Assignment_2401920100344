@@ -1,0 +1,46 @@
+/*Maximum Subarray*/
+/*https://leetcode.com/problems/maximum-subarray/*/
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0];
+        int currentSum =nums[0];
+        for( int i =1; i<nums.length;i++){
+            currentSum = Math.max(nums[i], currentSum+nums[i]);
+            maxSum = Math.max(maxSum,currentSum);
+        }
+        return maxSum;
+    }
+}
+
+
+/*Contains Duplicate */
+/*https://leetcode.com/problems/contains-duplicate/ */
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> dup = new HashSet<>();
+        for( int num: nums){
+            if(!dup.add(num)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+/*Maximmum Average Subarray-i*/
+/*https://leetcode.com/problems/maximum-average-subarray-i/ */
+
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        int totalSum =0;
+        for( int i =0;i<k;i++){
+            totalSum +=nums[i];
+        }
+        int maximumSum = totalSum;
+        for( int  i = k ;i<nums.length;i++){
+            totalSum+= nums[i]- nums[i-k];
+            maximumSum = Math.max(totalSum,maximumSum);
+        }
+        return (double)maximumSum/k;
+    }
+}
