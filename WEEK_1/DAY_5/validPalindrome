@@ -1,0 +1,26 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        int start = 0;
+        int end = s.length()-1;
+        char[] ch = s.toCharArray();
+        int newlength =0;
+        for( int i =start; i<=end;i++){
+            if(ch[i]>='A' && ch[i]<='Z'){
+                ch[i] = (char)(ch[i]+32);
+            }
+            if(Character.isLetterOrDigit(ch[i])){
+                ch[newlength]= ch[i];
+                newlength++;
+            }
+        }
+        end = newlength-1;
+        while(start<=end){
+            if(ch[start]!=ch[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
