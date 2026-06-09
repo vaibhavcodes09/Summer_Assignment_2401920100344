@@ -1,0 +1,27 @@
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+      if(s1.length()>s2.length())
+      return false;
+
+      int [] str1 = new int[26];
+      int [] str2 = new int[26];
+     
+      int i =0;
+      while(i<s1.length()){
+        str1[s1.charAt(i)-'a']++;
+        str2[s2.charAt(i)-'a']++;
+        i++;
+          }
+    if(Arrays.equals(str1,str2))
+        return true;
+    int start = 0; 
+   for(int end = s1.length();end<s2.length();end++){
+    str2[s2.charAt(start)-'a']--;
+    str2[s2.charAt(end)-'a']++;
+    if(Arrays.equals(str1,str2)) return true;
+    start++;
+    }
+    return false;
+    }
+
+}
