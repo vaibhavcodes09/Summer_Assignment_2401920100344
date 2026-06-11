@@ -1,0 +1,18 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> sol = new ArrayList<>();
+        solve(n,"",0,0,sol);
+        return sol;
+    }
+    private void solve(int n, String leftover, int open, int close,List<String >sol){
+        if(leftover.length()==2*n){
+        sol.add(leftover);
+        return;}
+        if(open < n){
+            solve(n,leftover+"(" ,open+1,close,sol);
+        }
+        if(close < open){
+            solve(n,leftover+")" ,open,close+1,sol);
+        }
+    }
+}

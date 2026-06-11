@@ -1,0 +1,30 @@
+class Solution {
+    private int i=0;
+    public String decodeString(String s) {
+        StringBuilder ans = new StringBuilder();
+        int count = 0;
+        
+        while(i<s.length()){
+            char ch = s.charAt(i);
+            i++;
+            if(ch=='['){
+                 String newStr = decodeString(s);
+                for(int j=0;j<count;j++){
+                    ans.append(newStr);
+                }
+                count =0;
+            }
+            else if(ch==']'){
+                break;
+            }
+            else if(Character.isDigit(ch)){
+                count = count *10 + (ch-'0');
+                           
+            }
+            else {
+                ans.append(ch); 
+            }
+        }
+            return ans.toString();
+    }
+}
