@@ -1,0 +1,26 @@
+lass Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast!=null && fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode previous = null;
+        while(slow!=null){
+            ListNode dummy = slow.next;
+            slow.next = previous;
+            previous = slow;
+            slow = dummy;
+        }
+        while(previous!=null){
+            if(head.val!=previous.val)
+            return false;
+
+            head = head.next;
+            previous = previous.next;
+        }
+        return true;
+    }    
+}
