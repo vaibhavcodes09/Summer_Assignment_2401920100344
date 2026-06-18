@@ -1,0 +1,30 @@
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        int h = heights.length;
+        Stack<Integer> stack = new Stack<>();
+        
+        int area=0;
+        int currHeight;
+        for(int i =0; i<=h;i++){
+            if(i!=h){
+                 currHeight = heights[i];
+            }
+            else 
+            currHeight= 0;
+            while(!stack.isEmpty()&&currHeight<heights[stack.peek()]){
+                int height = heights[stack.pop()];
+                int width =0;
+
+                if(stack.isEmpty()){
+                    width =i;
+                }
+                else{
+                    width = i-stack.peek()-1;
+                }
+                area = Math.max(area,height*width);
+            }
+            stack.push(i);
+        }
+        return area;
+    }
+}
