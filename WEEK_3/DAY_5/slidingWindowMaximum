@@ -1,0 +1,24 @@
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        if(nums==null||n==0||k<=0){
+            return new int[0];
+        }
+        int [] sol = new int[n-k+1];
+        Deque<Integer> dq = new LinkedList<>();
+        for(int idx =0;idx<n;idx++){
+            while(!dq.isEmpty() &&dq.peek()<idx-k+1){
+                dq.poll();
+            }
+            while(!dq.isEmpty()&&nums[dq.peekLast()]<nums[idx]){
+                dq.pollLast();
+            }
+            dq.offer(idx);
+
+            if(idx>=k-1){
+                sol[idx-k+1] = nums[dq.peek()];
+            }
+        }
+        return sol;
+    }
+}
